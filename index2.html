@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAEU ALERT SYSTEM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #ffe5d4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            background: #ff7043;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        main {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #ffcc80;
+            color: #333;
+            padding: 15px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ffa726;
+        }
+
+        #alert-message {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+            font-size: 24px; /* Tamaño de letra grande */
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+        }
+
+        #alert-fire {
+            background: #e57373;
+        }
+
+        #alert-crash {
+            background: #ef5350;
+        }
+
+        #alert-terrorism {
+            background: #ff8a65;
+        }
+
+        #alert-blackout {
+            background: #757575;
+        }
+
+        #alert-gas-leak {
+            background: #ffab91;
+        }
+
+        #alert-tornado {
+            background: #90caf9;
+        }
+
+        #alert-earthquake {
+            background: #ce93d8;
+        }
+
+        .loading-spinner {
+            display: none;
+            margin: 20px auto;
+            border: 8px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 8px solid #ff7043;
+            border-right: 8px solid #ffa726;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        TAEU ALERT SYSTEM
+    </header>
+    <main>
+        <button class="btn" onclick="simulateAlert('fire')">Simulación de Incendio</button>
+        <button class="btn" onclick="simulateAlert('crash')">Simulación de Accidente Aéreo</button>
+        <button class="btn" onclick="simulateAlert('terrorism')">Simulación de Terrorismo</button>
+        <button class="btn" onclick="simulateAlert('blackout')">Simulación de Apagón</button>
+        <button class="btn" onclick="simulateAlert('gas-leak')">Simulación de Fuga de Gas</button>
+        <button class="btn" onclick="simulateAlert('tornado')">Simulación de Tornado</button>
+        <button class="btn" onclick="simulateAlert('earthquake')">Simulación de Sismo</button>
+        <div class="loading-spinner" id="loading-spinner"></div>
+        <div id="alert-message"></div>
+    </main>
+
+    <script>
+        function simulateAlert(type) {
+            const spinner = document.getElementById("loading-spinner");
+            const alertMessage = document.getElementById("alert-message");
+
+            // Mostrar la rueda de carga
+            spinner.style.display = "block";
+            alertMessage.style.display = "none";
+
+            setTimeout(() => {
+                spinner.style.display = "none";
+
+                // Configurar mensaje y estilo de alerta según el tipo
+                switch (type) {
+                    case 'fire':
+                        alertMessage.textContent = "ALERTA: INCENDIO DETECTADO. SIGA LOS PROTOCOLOS DE EVACUACIÓN.";
+                        alertMessage.className = "alert-message";
+                        alertMessage.id = "alert-fire";
+                        break;
+                    case 'crash':
+                        alertMessage.textContent = "ALERTA: ACCIDENTE AÉREO. ACTIVE LAS MEDIDAS DE EMERGENCIA.";
+                        alertMessage.className = "alert-message";
+                        alertMessage.id = "alert-crash";
+                        break;
+                    case 'terrorism':
+                        alertMessage.textContent = "ALERTA: AMENAZA DE TERRORISMO DETECTADA.BUSQUE EL AUXILIO DE LAS AUTORIDADES.";
+                        alertMessage.className = "alert-message";
+                        alertMessage.id = "alert-terrorism";
+                        break;
+                    case 'blackout':
+                        alertMessage.textContent = "ALERTA: APAGÓN. ACTIVE EL MODO OFF DE LA APP, PARA SER DETECTADO";
+                        alertMessage.className = "alert-message";
+                        alertMessage.id = "alert-blackout";
+                        break;
+                    case 'gas-leak':
+                        alertMessage.textContent = "ALERTA: FUGA DE GAS DETECTADA. EVACUE INMEDIATAMENTE.";
+                        alertMessage.className = "alert-message";
+                        alertMessage.id = "alert-gas-leak";
+                        break;
+                    case 'tornado':
+                        alertMessage.textContent = "ALERTA: TORNADO DETECTADO. BUSQUE REFUGIO INMEDIATO.";
+                        alertMessage.className = "alert-message";
+                        alertMessage.id = "alert-tornado";
+                        break;
+                    case 'earthquake':
+                        alertMessage.textContent = "ALERTA: SISMO DETECTADO. SIGA LAS INSTRUCCIONES DE SEGURIDAD.";
+                        alertMessage.className = "alert-message";
+                        alertMessage.id = "alert-earthquake";
+                        break;
+                }
+
+                alertMessage.style.display = "block";
+
+                // Reproducir sonido de alarma
+                const audio = new Audio("https://www.soundjay.com/button/beep-07.wav");
+                audio.play();
+            }, 2000); // Simular tiempo de carga
+        }
+    </script>
+</body>
+</html>
